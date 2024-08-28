@@ -8,6 +8,26 @@ body {
     color: #000;
 }
 
+.alert-danger {
+  color: #105535;
+  background-color: hsl(130, 64%, 92%);
+  border-color: #c6f5c8;
+}
+
+.alert-bad {
+  color: #551010;
+  background-color: hsl(0, 65%, 92%);
+  border-color: #f5c6c6;
+}
+
+.alert {
+  position: relative;
+  padding: .75rem 1.25rem;
+  margin-bottom: 1rem;
+  border: 1px solid transparent;
+  border-radius: .25rem;
+}
+
 .link-block a {
     margin-top: 5px;
     margin-bottom: 5px;

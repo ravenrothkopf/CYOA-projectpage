@@ -123,11 +123,10 @@
 
 
 <!-- Teaser video-->
-<section class="hero teaser">
+<!-- <section class="hero teaser">
   <div class="container is-max-desktop">
     <div class="hero-body">
       <video poster="" id="tree" autoplay controls muted loop height="100%">
-        <!-- Your video here -->
         <source src="static/videos/banner_video.mp4"
         type="video/mp4">
       </video>
@@ -136,7 +135,7 @@
       </h2>
     </div>
   </div>
-</section>
+</section> -->
 <!-- End teaser video -->
 
 <!-- Paper abstract -->
@@ -162,95 +161,130 @@
   <div class="hero-body">
     <div class="container">
        <div class="item">
-        <!-- Your image here -->
         <img src="static/images/overview.jpg" alt="MY ALT TEXT"/>
 
-        <!-- Bold this header -->
-
-
         <h2 class="subtitle has-text">
-          <span style="font-weight: bold;">Figure 1: </span> An example conversation between an end-user and a choose-your-own-adventure game agent. After receiving a user prompt, the LLM consults an internal automaton synthesized from the Temporal Stream Logic (TSL) specification in Fig. 2. Using previous story context, the automaton outputs a correct prompt modifier so that the agent's response aligns with the story's formal specification of long-horizon behavior.
+          <span style="font-weight: bold;">Figure 1: </span> An example conversation between an end-user and a choose-your-own-adventure game agent. After receiving a user prompt, the LLM consults an internal automaton synthesized from the Temporal Stream Logic (TSL) specification in Fig. 2. Using previous story context, the automaton outputs a correct prompt modifier so that the agent's response aligns with its formal specification.
+        </h2>
+        <h2>In this paper, we combine LLMs with logic-based program synthesis techniques to build a framework for creating generative agents that are guaranteed to obey particular temporal properties. 
+          In this system, developers provide a specification of the temporal behavior to which their agent should adhere, and we synthesize a system that structures LLM <span style="font-weight: bold;">queries</span> of the agent.
+          <br>
+          <br>
+          The key design goal of our approach is an interactive generative agent with two main features:
+          <br>
+          <!--Indented list of features-->
+          <ol style="margin-left: 20px;">
+            <li><span style="font-weight: bold;">Adherence</span>: Despite explicit instructions in prompts, the LLM might still generate content that clearly violates the instructions. We want to make sure that the agent adheres to the provided specification.</li>
+            <li><span style="font-weight: bold;">Interpretability</span>: When an LLM produces unexpected outcomes, it is difficult to pinpoint the cause from previous interactions and correct accordingly. The developer should be able to identify the root cause of decisions made by the agent.</li>
+          </ol>
+          <br>
+          With these priorities, we turn to <span style="font-weight: bold;">reactive synthesis</span>.
+          In reactive synthesis, we can use a description of an agent's long-horizon behavior to synthesize an automaton that gives instructions as a <span style="font-weight: bold;">prompt modifier</span> to the LLM of how to respond on each state transition.
+          To decide how to transition between states, the automaton uses queries on the previous LLM output at each turn.
         </h2>
   </div>
 </div>
 </div>
 </section>
-<!-- End image carousel -->
 
-
-
-
-<!-- Youtube video -->
 <section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container">
       <!-- Paper video. -->
-      <h2 class="title is-3">Video Presentation</h2>
-      <div class="columns is-centered has-text-centered">
-        <div class="column is-four-fifths">
-          
-          <div class="publication-video">
-            <!-- Youtube embed code here -->
-            <iframe src="https://www.youtube.com/embed/JkaxUblCGz0" frameborder="0" allow="autoplay; encrypted-media" allowfullscreen></iframe>
-          </div>
+      <h2 class="title is-3">Reactive Synthesis and Temporal Stream Logic</h2>
+      <div class="is-centered">
+        <span style="font-weight:bold">Temporal Stream Logic (TSL)</span> is one approach to specifying an agent's long-horizon behavior. 
+        We can write properties about the temporal behavior of an agent, then synthesize an automaton that is guaranteed to meet those properties in program code. 
+        <br><br>
+        <!-- Two images next to each other horizontally -->
+         <div class="columns is-centered">
+        <div class="column is-half">
+          <img src="static/images/tsl.jpeg" alt="MY ALT TEXT"/>
+          <h2 class="subtitle has-text">
+            <span style="font-weight: bold;">Figure 2: </span> A TSL specification for a choose-your-own-adventure game agent. The agent should ensure that the player visits a market before visiting a cave.
+          </h2>
         </div>
+        <div class="column is-half">
+          <img src="static/images/automaton.jpeg" alt="MY ALT TEXT"/>
+          <h2 class="subtitle has-text">
+            <span style="font-weight: bold;">Figure 3: </span> An automaton synthesized from the TSL specification in Fig. 2. The automaton guides the agent's long-term content generation by providing prompt modifiers to the LLM.
+          </h2>
+        </div>
+        </div>
+        <br>
+        For example, an agent specialized to generate text for interactive choose-your-own adventure games is depicted in Figure 1. 
+        This particular agent uses an internal automaton from the TSL specification in Figure 2 to ensure the player visits a cave only after visiting a market.
+        The automaton synthesized from this specification using reactive synthesis is also shown Figure 3.
       </div>
     </div>
   </div>
 </section>
-<!-- End youtube video -->
 
-
-<!-- Video carousel -->
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title is-3">Another Carousel</h2>
-      <div id="results-carousel" class="carousel results-carousel">
-        <div class="item item-video1">
-          <video poster="" id="video1" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel1.mp4"
-            type="video/mp4">
-          </video>
+      <h2 class="title is-3">Procedural Adherence and Interpretablility</h2>
+      <div class="is-centered">
+      With this hybrid automaton-LLM system, we can treat an agent prompt and response as two different tasks: generating a correct response according to the prompt, which is controlled by the LLM, and choosing the correct prompt modifier that aligns with the agent's long-horizon behavior using the context of previous turns, which is controlled by the automaton. 
+      <div class="container mt-4">
+        <div class="alert alert-danger">
+          <strong>Key Insight:</strong>
+        This approach distinguishes between <span style="font-weight: bold;">point-in-time</span> adherence and interpretability (low-level agent behavior over one turn) vs. <span style="font-weight: bold;">procedural</span>  adherence and interpretability (high-level agent behavior over an entire conversation).
         </div>
-        <div class="item item-video2">
-          <video poster="" id="video2" autoplay controls muted loop height="100%">
-            <!-- Your video file here -->
-            <source src="static/videos/carousel2.mp4"
-            type="video/mp4">
-          </video>
-        </div>
-        <div class="item item-video3">
-          <video poster="" id="video3" autoplay controls muted loop height="100%">\
-            <!-- Your video file here -->
-            <source src="static/videos/carousel3.mp4"
-            type="video/mp4">
-          </video>
         </div>
       </div>
+      <div class="columns is-centered">
+        <div class="column is-half">
+          <img src="static/images/adherence.jpeg" alt="MY ALT TEXT"/>
+        </div>
+        <div class="column is-half">
+          <img src="static/images/interpretability.jpeg" alt="MY ALT TEXT"/>
+        </div>
+      </div>
+      Leveraging the correct-by-construction automaton, we get a generative agent with guaranteed procedural adherence and preexisting theories to achieve procedural interpretability for free. 
+      We can use the automaton to track the long-term context of the conversation and decide how to guide the conversation accordingly. 
+      This way, the LLM can focus on a shorter context window and the automaton can ensure that the agent adheres to its specified long-term behavior.
+    </div>
     </div>
   </div>
 </section>
-<!-- End video carousel -->
 
-
-
-
-
-
-<!-- Paper poster -->
 <section class="hero is-small is-light">
   <div class="hero-body">
     <div class="container">
-      <h2 class="title">Poster</h2>
-
-      <iframe  src="static/pdfs/sample.pdf" width="100%" height="550">
-          </iframe>
-        
+      <h2 class="title">CYOA Generative Agent Performance</h2>
+      <h2>To demonstrate the benefits of procedural adherence, we tested how well a generative agent could adhere to four different long-term narrative constraints in the domain of choose-your-own-adventure games.
+      We were able to obtain significantly better long-horizon results with our automaton-enhanced agent than state-of-the-art approaches that only rely on the GPT-4 LLM.
+      </h2>
+      <br>
+      <h2>
+      Our adherence measurements capture both procedural and point-in-time adherence for the automaton-enhanced agents, whereas we can only measure the point-in-time adherence of the pure-LLM agents. 
+      We note that the automaton-enhanced agents all achieve 100% procedural adherence by construction, and the lack of point-in-time adherence leads to LLM hallucinations and specification violations.
+      </h2>
+      <br>
+      <div class="columns is-centered">
+        <img src="static/images/results.jpeg" alt="MY ALT TEXT" style="width: 50%;"/>
       </div>
+      <div class="columns is-centered">
+        <div class="column is-half">
+            <div class="alert alert-danger">
+              Across all games, the automaton-enhanced system achieved at least <span style="font-weight: bold;">96.00% adherence</span> to its temporal constraints.
+            </div>
+          </div>
+        <div class="column is-half">
+            <div class="alert alert-bad">
+            Across all games, the pure-LLM system achieved as low as <span style="font-weight: bold;">14.67% adherence</span> to its temporal constraints.
+            </div>
+          </div>
+        </div>
+      </div>
+      <h2>
+      Our goal is to illustrate and evaluate one of many possible ways to guarantee procedural adherence and interpretability of an LLM. 
+      We highlight the importance of the distinction between and separation of procedural and point-in-time properties when building neuro-symbolic generative agents. 
+      </h2>
     </div>
-  </section>
+  </div>
+</section>
 <!--End paper poster -->
 
 
@@ -258,7 +292,13 @@
   <section class="section" id="BibTeX">
     <div class="container is-max-desktop content">
       <h2 class="title">BibTeX</h2>
-      <pre><code>BibTex Code Here</code></pre>
+      <pre><code>@article{rothkopf2024procedurally,
+        title={Procedural Adherence and Interpretability Through Neuro-Symbolic Generative Agents}, 
+        author={Raven Rothkopf and Hannah Tongxin Zeng and Mark Santolucito},
+        journal={arXiv preprint arXiv:2402.16905},
+        year={2024},
+        url={https://arxiv.org/abs/2402.16905}, 
+  }</code></pre>
     </div>
 </section>
 <!--End BibTex citation -->
@@ -271,9 +311,7 @@
         <div class="content">
 
           <p>
-            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a> which was adopted from the <a href="https://nerfies.github.io" target="_blank">Nerfies</a> project page.
-            You are free to borrow the of this website, we just ask that you link back to this page in the footer. <br> This website is licensed under a <a rel="license"  href="http://creativecommons.org/licenses/by-sa/4.0/" target="_blank">Creative
-            Commons Attribution-ShareAlike 4.0 International License</a>.
+            This page was built using the <a href="https://github.com/eliahuhorwitz/Academic-project-page-template" target="_blank">Academic Project Page Template</a>.
           </p>
 
         </div>
