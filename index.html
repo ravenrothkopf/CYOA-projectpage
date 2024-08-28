@@ -81,12 +81,12 @@
                       </a>
                     </span>
 
-                    <!-- Supplementary PDF link -->
+                    <!-- Demo link -->
                     <span class="link-block">
                       <a href="https://barnard-pl-labs.github.io/CYOA-TSL/" target="_blank"
                       class="external-link button is-normal is-rounded is-dark">
                       <span class="icon">
-                        <i class="fas fa-file-pdf"></i>
+                        <i class="fas fa-desktop"></i>
                       </span>
                       <span>Demo</span>
                     </a>
@@ -147,7 +147,7 @@
         <h2 class="title is-3">Abstract</h2>
         <div class="content has-text-justified">
           <p>
-            Lorem ipsum dolor sit amet, consectetur adipiscing elit. Proin ullamcorper tellus sed ante aliquam tempus. Etiam porttitor urna feugiat nibh elementum, et tempor dolor mattis. Donec accumsan enim augue, a vulputate nisi sodales sit amet. Proin bibendum ex eget mauris cursus euismod nec et nibh. Maecenas ac gravida ante, nec cursus dui. Vivamus purus nibh, placerat ac purus eget, sagittis vestibulum metus. Sed vestibulum bibendum lectus gravida commodo. Pellentesque auctor leo vitae sagittis suscipit.
+            The surge in popularity of large language models (LLMs) has opened doors for new approaches to creating interactive agents. However, managing and interpreting the temporal behavior of such agents during a potentially infinite interaction remain challenging. The stateful, long-term horizon reasoning required for coherent agent behavior does not fit well into the LLM paradigm. We propose a combination of formal logic-based program synthesis and LLM content generation to bring guarantees of procedural adherence and interpretability to generative agent behavior. To illustrate the benefit of procedural adherence and interpretability, we use Temporal Stream Logic (TSL) to generate an automaton that enforces an interpretable, high-level temporal structure on an agent. With the automaton tracking long-term context and deciding to guide the conversation accordingly, we can drive content generation in a way that allows the LLM to focus on a shorter context window. We evaluated our approach on different tasks involved in creating an interactive agent specialized for generating choose-your-own-adventure games. We found that over all the tasks, an automaton-enhanced agent with procedural guarantees achieves at least 96% adherence to its temporal constraints, whereas a purely LLM-based agent demonstrates as low as 14.67% adherence.
           </p>
         </div>
       </div>
@@ -161,35 +161,16 @@
 <section class="hero is-small">
   <div class="hero-body">
     <div class="container">
-      <div id="results-carousel" class="carousel results-carousel">
        <div class="item">
         <!-- Your image here -->
-        <img src="static/images/carousel1.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          First image description.
+        <img src="static/images/overview.jpg" alt="MY ALT TEXT"/>
+
+        <!-- Bold this header -->
+
+
+        <h2 class="subtitle has-text">
+          <span style="font-weight: bold;">Figure 1: </span> An example conversation between an end-user and a choose-your-own-adventure game agent. After receiving a user prompt, the LLM consults an internal automaton synthesized from the Temporal Stream Logic (TSL) specification in Fig. 2. Using previous story context, the automaton outputs a correct prompt modifier so that the agent's response aligns with the story's formal specification of long-horizon behavior.
         </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel2.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-          Second image description.
-        </h2>
-      </div>
-      <div class="item">
-        <!-- Your image here -->
-        <img src="static/images/carousel3.jpg" alt="MY ALT TEXT"/>
-        <h2 class="subtitle has-text-centered">
-         Third image description.
-       </h2>
-     </div>
-     <div class="item">
-      <!-- Your image here -->
-      <img src="static/images/carousel4.jpg" alt="MY ALT TEXT"/>
-      <h2 class="subtitle has-text-centered">
-        Fourth image description.
-      </h2>
-    </div>
   </div>
 </div>
 </div>
